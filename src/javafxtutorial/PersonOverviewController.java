@@ -3,6 +3,7 @@ package javafxtutorial;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.scene.control.Dialogs;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -96,5 +97,16 @@ public class PersonOverviewController {
 		this.lastNameLabel.setText("");
 		this.postalCodeLabel.setText("");
 		this.streetLabel.setText("");
+	}
+	
+	@FXML
+	private void handleDeletePerson() {
+		int selectedIndex = personTable.getSelectionModel().getSelectedIndex();
+		if (selectedIndex >= 0) {
+			personTable.getItems().remove(selectedIndex);
+		} else {
+			Dialogs.showWarningDialog(mainApp.getPrimaryStage(), "Please select a person in the table.", "No Person selected", "No Selection");
+		}
+		
 	}
 }
