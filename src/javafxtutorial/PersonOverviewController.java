@@ -109,4 +109,36 @@ public class PersonOverviewController {
 		}
 		
 	}
+	
+	@FXML
+	private void handleNewPerson() {
+		Person tempPerson = new Person();
+		boolean okClicked = mainApp.showPersonEditDialog(tempPerson);
+		if (okClicked) {
+			mainApp.getPersonData().add(tempPerson);
+		}
+	}
+	
+	@FXML
+	private void handleEditPerson() {
+		Person selectedPerson = personTable.getSelectionModel().getSelectedItem();
+		if (selectedPerson != null) {
+			boolean okClicked = mainApp.showPersonEditDialog(selectedPerson);
+			if (okClicked) {
+				refreshPersonTable();
+				showPersonDetails(selectedPerson);
+			} else {
+				Dialogs.showWarningDialog(mainApp.getPrimaryStage(), "Please select a person in table.",
+						"No Person selected", "No Selection");
+			}
+		}
+	}
+
+	private void refreshPersonTable() {
+		int selectedIndex = personTable.getSelectionModel().getSelectedIndex();
+		personTable.setItems(null);
+		personTable.layout();
+		personTable.setItems(mainApp.getPersonData());
+		personTable.getSelectionModel().select(selectedIndex);
+	}
 }

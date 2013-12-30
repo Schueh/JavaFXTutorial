@@ -53,8 +53,8 @@
             </GridPane>
             <HBox id="HBox" alignment="CENTER" layoutX="123.0" layoutY="264.0" spacing="5.0">
               <children>
-                <Button mnemonicParsing="false" text="New..." />
-                <Button mnemonicParsing="false" text="Edit..." />
+                <Button mnemonicParsing="false" onAction="#handleNewPerson" text="New..." />
+                <Button mnemonicParsing="false" onAction="#handleEditPerson" text="Edit..." />
                 <Button mnemonicParsing="false" onAction="#handleDeletePerson" text="Delete" />
               </children>
             </HBox>
