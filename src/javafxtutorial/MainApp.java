@@ -3,14 +3,35 @@ package javafxtutorial;
 import java.io.IOException;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafxtutorial.model.Person;
 
 public class MainApp extends Application {
 
+	private ObservableList<Person> personData = FXCollections.observableArrayList();
+	
+	public MainApp() {
+		personData.add(new Person("Hans", "Muster"));
+	      personData.add(new Person("Ruth", "Mueller"));
+	      personData.add(new Person("Heinz", "Kurz"));
+	      personData.add(new Person("Cornelia", "Meier"));
+	      personData.add(new Person("Werner", "Meyer"));
+	      personData.add(new Person("Lydia", "Kunz"));
+	      personData.add(new Person("Anna", "Best"));
+	      personData.add(new Person("Stefan", "Meier"));
+	      personData.add(new Person("Martin", "Mueller"));
+	}
+	
+	public ObservableList<Person> getPersonData() {
+		return personData;
+	}
+	
 	private Stage primaryStage;
 	private BorderPane rootLayout;
 	
@@ -44,6 +65,11 @@ public class MainApp extends Application {
 			FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("view/PersonOverview.fxml"));
 			AnchorPane overviewPage = (AnchorPane) loader.load();
 			rootLayout.setCenter(overviewPage);
+			
+			// Give the controller access to the main app
+			PersonOverviewController controller = loader.getController();
+			controller.setMainApp(this);
+			
 		} catch (IOException e) {
 			// Exception gets thrown if the fxml file could not be loaded
 			e.printStackTrace();
