@@ -1,11 +1,14 @@
 package javafxtutorial;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafxtutorial.model.Person;
+import javafxtutorial.util.CalendarUtil;
 
 public class PersonOverviewController {
       @FXML
@@ -44,9 +47,21 @@ public class PersonOverviewController {
 	   */
 	   @FXML
 	   private void initialize() {
-	     // Initialize the person table
+		   // Initialize the person table
 	       firstNameColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("firstName"));
 	       lastNameColumn.setCellValueFactory(new PropertyValueFactory<Person, String>("lastName"));
+	       
+	       personTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+	       
+	       ClearLabels();
+	       
+	       personTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Person>(){
+	    	   
+	    	   @Override
+	    	   public void changed(ObservableValue<? extends Person> observable, Person oldValue, Person newValue) {
+	    		   showPersonDetails(newValue);
+	    	   }
+	       });
 	   }
 
 	   /**
@@ -60,4 +75,26 @@ public class PersonOverviewController {
 	       // Add observable list data to the table
 	       personTable.setItems(mainApp.getPersonData());
 	   }
+	   
+	   private void showPersonDetails(Person person) {
+		   if (person == null) {
+			   ClearLabels();
+		   } else {
+			   this.birthdayLabel.setText(CalendarUtil.format(person.getBirthday()));
+			   this.cityLabel.setText(person.getCity());
+			   this.firstNameLabel.setText(person.getFirstName());
+			   this.lastNameLabel.setText(person.getLastName());
+			   this.postalCodeLabel.setText(Integer.toString(person.getPostalCode()));
+			   this.streetLabel.setText(person.getStreet());
+		   }
+	   }
+
+	private void ClearLabels() {
+		this.birthdayLabel.setText("");
+		this.cityLabel.setText("");
+		this.firstNameLabel.setText("");
+		this.lastNameLabel.setText("");
+		this.postalCodeLabel.setText("");
+		this.streetLabel.setText("");
+	}
 }
