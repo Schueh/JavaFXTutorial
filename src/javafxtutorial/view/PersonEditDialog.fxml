@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
+<?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="javafxtutorial.PersonEditDialogController">
+<AnchorPane prefHeight="300.0" prefWidth="400.0" styleClass="background" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="javafxtutorial.PersonEditDialogController">
   <!-- TODO Add Nodes -->
   <children>
     <GridPane prefHeight="224.0" prefWidth="372.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
@@ -36,7 +37,10 @@
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       </rowConstraints>
     </GridPane>
-    <Button layoutX="322.0" layoutY="266.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
-    <Button layoutX="273.0" layoutY="266.0" mnemonicParsing="false" onAction="#handleOk" text="OK" />
+    <Button layoutX="302.0" layoutY="266.0" mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
+    <Button defaultButton="true" layoutX="229.0" layoutY="266.0" mnemonicParsing="false" onAction="#handleOk" text="OK" />
   </children>
+  <stylesheets>
+    <URL value="@DarkTheme.css" />
+  </stylesheets>
 </AnchorPane>
