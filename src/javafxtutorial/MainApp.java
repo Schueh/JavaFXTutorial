@@ -183,4 +183,24 @@ public class MainApp extends Application {
 					"Could not save data", "Error", e);
 		}
 	}
+	
+	public void showBirthdayStatistics() {
+		try {
+			FXMLLoader loader = new FXMLLoader(MainApp.class.getResource("view/BirthdayStatistics.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Birthday Statistics");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(primaryStage);
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+			
+			BirthdayStatisticsController controller = loader.getController();
+			controller.setPersonData(personData);
+			
+			dialogStage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

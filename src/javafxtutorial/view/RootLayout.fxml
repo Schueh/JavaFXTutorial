@@ -25,6 +25,7 @@
               </accelerator>
             </MenuItem>
             <MenuItem mnemonicParsing="false" onAction="#handleSaveAs" text="Save as..." />
+            <MenuItem mnemonicParsing="false" onAction="#handleShowBirthdayStatistics" text="Show Birthday Statistics" />
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </items>
         </Menu>
